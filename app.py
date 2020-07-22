@@ -111,14 +111,15 @@ def stats(start = None, end = None):
 
     if not end:
         temps = session.query(*sel).filter(Measurement.date >= start).all()
-        temps_list = list(np.ravel(results))
+        temps_list = list(np.ravel(temps))
         print(temps_list)
         return jsonify(temps_list)
         
     new_temps = session.query(*sel).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
     print(new_temps)        
-  
+    
     return jsonify(new_temps)
+    session.close()
 
 if __name__ == '__main__':
     app.run(debug=True)  
