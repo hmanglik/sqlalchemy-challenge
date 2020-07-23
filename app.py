@@ -122,7 +122,6 @@ def stats(start = None, end = None):
 
     # Get the minimum temperature, average temperature, and max temperature 
     sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-
     # When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date
     if not end:
         temps = session.query(*sel).filter(Measurement.date >= start).all()
